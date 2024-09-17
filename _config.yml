@@ -39,5 +39,7 @@ mathjax:
 # Nummerierungen aktivieren
 sphinx:
   config:
-    numfig: true    
+    numfig: true
     math_number_all: true
+    math_eqref_format: "({number})"
+    math_numfig: true
