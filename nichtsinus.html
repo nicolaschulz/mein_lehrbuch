@@ -410,6 +410,17 @@ In diesem Kapitel wird behandelt, wie man solche Größen mathematisch beschreib
 <span class="eqno">(3)<a class="headerlink" href="#equation-eq-mittelwert" title="Link to this equation">#</a></span>\[X_{AV}=\overline{X}=\frac{a_0}{2}=\frac{1}{T_1}\int_{0}^{T_1}{x(t)dt}=\frac{1}{2 \pi}\int_{0}^{2\pi}{x(\omega_1 t)d(\omega_1 t)}\]</div>
 <p>Bei Gleichstromwerten wird manchmal auf den Index <span class="math notranslate nohighlight">\(AV\)</span> und auf das Überstreichen verzichtet (z.B. der Mittelwert des Gleichstromes <span class="math notranslate nohighlight">\(i_D (t)\)</span> ist <span class="math notranslate nohighlight">\(I_D\)</span>). Um Unklarheiten zu vermeiden, sollte jedoch der Index <span class="math notranslate nohighlight">\(AV\)</span> stets angegeben werden. Teilweise (aber selten) wird zudem statt des Indexes <span class="math notranslate nohighlight">\(AV\)</span> der Index <span class="math notranslate nohighlight">\(m\)</span> für “Mittelwert” verwendet.</p>
 <p>Die übrigen Summanden in Gleichung <a class="reference internal" href="#equation-eq-fourier">(1)</a> werden als <strong><span class="math notranslate nohighlight">\(\nu\)</span>-te Harmonische</strong> bezeichnet und berechnen sich wie folgt:</p>
+<div class="math notranslate nohighlight" id="equation-eq-harmonische">
+<span class="eqno">(4)<a class="headerlink" href="#equation-eq-harmonische" title="Link to this equation">#</a></span>\[a_{\nu} = \frac{1}{\pi} \int_{0}^{2\pi}{\left[ x(\omega_1 t)\cdot \cos(\nu \omega_1 t) \right] d(\omega_1 t)}
+b_{\nu} = \frac{1}{\pi} \int_{0}^{2\pi}{\left[ x(\omega_1 t)\cdot \sin(\nu \omega_1 t) \right] d(\omega_1 t)}\]</div>
+<p>In gewissen Spezialfällen, welche in der Praxis oft vorkommen, lässt sich die Berechnung der Fourier-Koeffizienten vereinfachen:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(x(t)\)</span> ist eine <strong>gerade Funktion</strong>: <span class="math notranslate nohighlight">\(x(t)=x(-t)\)</span></p></li>
+</ol>
+<div class="math notranslate nohighlight" id="equation-nichtsinus-0">
+<span class="eqno">(5)<a class="headerlink" href="#equation-nichtsinus-0" title="Link to this equation">#</a></span>\[b_{\nu} = \frac{2}{\pi} \int_{0}^{\pi}{\left[ x(\omega_1 t)\cdot \sin(\nu \omega_1 t) \right] d(\omega_1 t)} \hspace{0.5cm} \textrm{mit} \hspace{0.3cm} a_{\nu}=0
+Sie setzt sich aus ungeraden Sinus-Funktionen zusammen.
+Da $a_{\nu}=0$, gilt insbesondere $a_0 = 0$. Das bedeutet, dass ungerade Funktionen den Mittelwert Null besitzen.\]</div>
 </section>
 </section>
 
