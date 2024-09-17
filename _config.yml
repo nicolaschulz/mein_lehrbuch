@@ -30,3 +30,8 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+
+# MathJax configuration to render LaTeX equations
+mathjax: 
+  inlineMath: [["$", "$"], ["\\(", "\\)"]]
+  displayMath: [["$$", "$$"], ["\\[", "\\]"]]
