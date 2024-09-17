@@ -430,7 +430,7 @@ a_{\nu} &amp;= 0\end{split}\]</div>
 <div class="math notranslate nohighlight" id="equation-eq-scheitelwert-phase-nu">
 <span class="eqno">(7)<a class="headerlink" href="#equation-eq-scheitelwert-phase-nu" title="Link to this equation">#</a></span>\[\begin{split}\hat{X}_{\nu} &amp;= \hat{X}_{\nu ,p}=\sqrt{a_{\nu}^2 +° b_{\nu}^2} \\
 \phi_{\nu} &amp;= \arctan \left( \frac{a_{\nu}}{b_{\nu}} \right)\end{split}\]</div>
-<p>Generell wird der <strong>Scheitel- oder Spitzenwert</strong> eines Signals gegenüber Null mit dem Index <span class="math notranslate nohighlight">\(p\)</span> (für engl. <em>“peak”</em>) bezeichnet, teilweise wird dafür auch das Symbol <span class="math notranslate nohighlight">\(\hat{ }\)</span> (Umgangssprache: “Dach”) verwendet. Damit lässt sich das Signal <span class="math notranslate nohighlight">\(x(t)\)</span> statt durch eine Summe von Cosinus- und Sinusfunktionen auch durch eine Summe von Sinusfunktionen mit jeweiliger Phasenlage <span class="math notranslate nohighlight">\(\phi_{\nu}\)</span> darstellen:</p>
+<p>Generell wird der <strong>Scheitel- oder Spitzenwert</strong> eines Signals gegenüber Null mit dem Index <span class="math notranslate nohighlight">\(p\)</span> (für engl. <em>“peak”</em>) bezeichnet, teilweise wird dafür auch das Dach-Symbol verwendet. Damit lässt sich das Signal <span class="math notranslate nohighlight">\(x(t)\)</span> statt durch eine Summe von Cosinus- und Sinusfunktionen auch durch eine Summe von Sinusfunktionen mit jeweiliger Phasenlage <span class="math notranslate nohighlight">\(\phi_{\nu}\)</span> darstellen:</p>
 <div class="math notranslate nohighlight" id="equation-eq-xt-sinus-phase">
 <span class="eqno">(8)<a class="headerlink" href="#equation-eq-xt-sinus-phase" title="Link to this equation">#</a></span>\[x(t)=X_{AV} + \sum_{\nu = 1}^{\infty}{X_{\nu ,p} \cdot \sin \left( \nu \omega_{\nu} t + \phi_{\nu} \right) }\]</div>
 <p>Der <strong>Grundschwingungsanteil</strong> des Signals <span class="math notranslate nohighlight">\(x(t)\)</span> wird als <span class="math notranslate nohighlight">\(X_{\nu =1,p}\)</span> bezeichnet.
@@ -439,6 +439,12 @@ Das <strong>Amplitudenspektrum</strong> <span class="math notranslate nohighligh
 <span class="eqno">(9)<a class="headerlink" href="#equation-eq-amplitudenspektrum" title="Link to this equation">#</a></span>\[\begin{split}\hat{X}^{\prime}_{\nu} &amp;= {X}^{\prime}_{\nu ,p} = 20 \cdot \mathop{\log_{10}} \left( \frac{X_{\nu ,p}}{X_B} \right) \\
 x_{(dB)} &amp;= 20 \cdot \log (x) \hspace{0.5cm} \textrm{mit} \hspace{0.3cm} x=10^{x_{(dB)}/20}\end{split}\]</div>
 <p>Für Ströme und Spannungen wird in Gleichung <a class="reference internal" href="#equation-eq-amplitudenspektrum">(9)</a> der Faktor 20 verwendet, für Leistungen hingegen der Faktor 10. Der Bezugswert <span class="math notranslate nohighlight">\(X_B\)</span> ist frei wählbar; oft wird der Effektivwert gemäss Gleichung XYZ verwendet.</p>
+<figure class="align-default" id="fig-amplitudenspektrum">
+<a class="reference internal image-reference" href="_images/Amplitudenspektrum.png"><img alt="_images/Amplitudenspektrum.png" src="_images/Amplitudenspektrum.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Beispiel für ein Amplitudenspektrum, wie es in der Leistungselektronik auftreten kann. Oben: Rechteckförmiger Signalverlauf <span class="math notranslate nohighlight">\(x(t)\)</span>. Unten: Logarithmisches Amplitudenspektrum von <span class="math notranslate nohighlight">\(x(t)\)</span>.</span><a class="headerlink" href="#fig-amplitudenspektrum" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 </section>
 
