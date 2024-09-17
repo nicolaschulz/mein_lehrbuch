@@ -1,0 +1,125 @@
+Traceback (most recent call last):
+  File "/home/nicola/Dokumente/Lehrbuch/mein_lehrbuch/my_jupyter_book/lib64/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/nicola/Dokumente/Lehrbuch/mein_lehrbuch/my_jupyter_book/lib64/python3.12/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nicola/Dokumente/Lehrbuch/mein_lehrbuch/my_jupyter_book/lib64/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/nicola/Dokumente/Lehrbuch/mein_lehrbuch/my_jupyter_book/lib64/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/nicola/Dokumente/Lehrbuch/mein_lehrbuch/my_jupyter_book/lib64/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/nicola/Dokumente/Lehrbuch/mein_lehrbuch/my_jupyter_book/lib64/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+import matplotlib.pyplot as plt
+from ipywidgets import FloatSlider, HBox, VBox, Label, Textarea, interactive_output
+from matplotlib.ticker import MultipleLocator, FuncFormatter
+
+# Funktion zum Plotten und Prüfen der Symmetrie
+def plot_sine_cosine(amplitude_0, amplitude_sin1, amplitude_cos1, amplitude_sin2, amplitude_cos2, amplitude_sin3, amplitude_cos3):
+    x = np.linspace(-2 * np.pi, 2 * np.pi, 100)
+    y = (amplitude_0 + amplitude_sin1 * np.sin(x) + amplitude_cos1 * np.cos(x) 
+         + amplitude_sin2 * np.sin(2 * x) + amplitude_cos2 * np.cos(2 * x)
+         + amplitude_sin3 * np.sin(3 * x) + amplitude_cos3 * np.cos(3 * x))
+    
+    # Berechnung der negativen x-Werte für die Symmetrieprüfung
+    f_neg_x = (amplitude_0 + amplitude_sin1 * np.sin(-x) + amplitude_cos1 * np.cos(-x) 
+               + amplitude_sin2 * np.sin(2 * (-x)) + amplitude_cos2 * np.cos(2 * (-x))
+               + amplitude_sin3 * np.sin(3 * (-x)) + amplitude_cos3 * np.cos(3 * (-x)))
+    
+    plt.figure(figsize=(8, 4))
+    
+    # Überprüfung der Symmetrie und Festlegung der Farbe
+    if np.allclose(y, f_neg_x):
+        plt.title("Gerade Funktion: f(x) = f(-x)")
+        color = 'green'
+    elif np.allclose(y, -f_neg_x):
+        plt.title("Ungerade Funktion: f(x) = -f(-x)")
+        color = 'green'
+    else:
+        plt.title("Weder gerade noch ungerade")
+        color = 'blue'
+    
+    plt.plot(x, y, label=f"a0: {amplitude_0}, Sin1: {amplitude_sin1}, Cos1: {amplitude_cos1}, Sin2: {amplitude_sin2}, Cos2: {amplitude_cos2}, Sin3: {amplitude_sin3}, Cos3: {amplitude_cos3}", color=color)
+    
+    # Hauptachsen fett darstellen
+    plt.axhline(0, color='black', linewidth=2)  # y=0
+    plt.axvline(0, color='black', linewidth=2)  # x=0
+
+    # Skalierung der x-Achse in Einheiten von pi
+    ax = plt.gca()
+    ax.xaxis.set_major_locator(MultipleLocator(base=np.pi))
+    ax.xaxis.set_major_formatter(FuncFormatter(
+        lambda val, pos: '{:.0f}$\\pi$'.format(val/np.pi) if val != 0 else '0'
+    ))
+
+    plt.ylim(-4, 4)
+    plt.xlim(-2 * np.pi, 2 * np.pi)
+    plt.xlabel("x")
+    plt.ylabel("f(x)")
+    plt.grid(True)
+    plt.legend()
+    plt.show()
+
+# Funktion zur Anordnung der Slider mit Labels rechts
+def labeled_slider(slider_label, min_value, max_value, step, initial_value):
+    slider = FloatSlider(min=min_value, max=max_value, step=step, value=initial_value)
+    label = Label(value=slider_label)
+    return HBox([slider, label]), slider
+
+# Korrekte und ausführliche Beschriftungen der Slider
+slider_a0, slider_a0_val = labeled_slider(r"Gleichanteil (a0)", min_value=-2, max_value=2, step=0.1, initial_value=0)
+slider_a1, slider_a1_val = labeled_slider(r"Amplitude des 1. Sinus-Terms (a1)", min_value=0, max_value=2, step=0.1, initial_value=1)
+slider_b1, slider_b1_val = labeled_slider(r"Amplitude des 1. Cosinus-Terms (b1)", min_value=0, max_value=2, step=0.1, initial_value=0)
+slider_a2, slider_a2_val = labeled_slider(r"Amplitude des 2. Sinus-Terms (a2)", min_value=0, max_value=2, step=0.1, initial_value=0)
+slider_b2, slider_b2_val = labeled_slider(r"Amplitude des 2. Cosinus-Terms (b2)", min_value=0, max_value=2, step=0.1, initial_value=0)
+slider_a3, slider_a3_val = labeled_slider(r"Amplitude des 3. Sinus-Terms (a3)", min_value=0, max_value=2, step=0.1, initial_value=0)
+slider_b3, slider_b3_val = labeled_slider(r"Amplitude des 3. Cosinus-Terms (b3)", min_value=0, max_value=2, step=0.1, initial_value=0)
+
+# Erklärender Text
+explanation_text = Textarea(
+    value="Die dargestellte Funktion f(x) ist die Summe von Sinus- und Cosinusfunktionen von der 0. bis zur 3. Harmoniaschen. \n" 
+          "Verwenden Sie die Schieberegler, um die Amplituden der einzelnen Sinus- und Cosinusfunktionen anzupassen.\n"
+          "Das Widget zeigt an, ob die Funktion gerade, ungerade oder weder noch ist.",
+    disabled=True,
+    layout={'width': '300px', 'height': '192px'} 
+)
+
+# Interaktive Plot-Funktion
+def update_plot(a0, a1, b1, a2, b2, a3, b3):
+    plot_sine_cosine(a0, a1, b1, a2, b2, a3, b3)
+
+# Layout mit Slidern und Textfeld
+ui = HBox([VBox([slider_a0, slider_a1, slider_b1, slider_a2, slider_b2, slider_a3, slider_b3]), explanation_text])
+
+# Interaktive Ausgabe
+interactive_plot = interactive_output(update_plot, {
+    'a0': slider_a0_val, 'a1': slider_a1_val, 'b1': slider_b1_val,
+    'a2': slider_a2_val, 'b2': slider_b2_val, 'a3': slider_a3_val, 'b3': slider_b3_val
+})
+
+# Anzeige der UI-Komponenten
+display(ui, interactive_plot)
+
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[1], line 3[0m
+[1;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+[0;32m----> 3[0m [38;5;28;01mfrom[39;00m [38;5;21;01mipywidgets[39;00m [38;5;28;01mimport[39;00m FloatSlider, HBox, VBox, Label, Textarea, interactive_output
+[1;32m      4[0m [38;5;28;01mfrom[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mticker[39;00m [38;5;28;01mimport[39;00m MultipleLocator, FuncFormatter
+[1;32m      6[0m [38;5;66;03m# Funktion zum Plotten und Prüfen der Symmetrie[39;00m
+
+[0;31mModuleNotFoundError[0m: No module named 'ipywidgets'
+
