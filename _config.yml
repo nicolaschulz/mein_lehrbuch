@@ -35,3 +35,9 @@ html:
 mathjax: 
   inlineMath: [["$", "$"], ["\\(", "\\)"]]
   displayMath: [["$$", "$$"], ["\\[", "\\]"]]
+
+# Nummerierungen aktivieren
+  sphinx:
+    config:
+        numfig: true    
+        math_number_all: true
